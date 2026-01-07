@@ -5,24 +5,11 @@ import re
 medicos = []
 
 #Função para cadastrar os Médicos 
-def cadastrar_medico():
-    print("\n--- Cadastro de Médico ---")
-    nome = input("Nome: ")
-    especialidade = input("Especialidade: ")
-#Faz com que ao digitar o CRM, seja possível digitar só numeros
-    while True:
-        crm = input("CRM (apenas números): ")
-        if crm.isdigit():
-            break
-        else:
-            print("⚠️ Entrada inválida. Digite apenas números.")
-
-
+def cadastrar_medico(nome, crm, especialidade):
     for medico in medicos:
         if medico.crm == crm:
-            print("⚠️ CRM já cadastrado.")
-            return
+            return False, "CRM já cadastrado."
         
-    novo_medico = Medico(nome, especialidade, crm)
-    medicos.append(novo_medico)
-    print("✅ Médico cadastrado com sucesso!")
+    medico_cadastrado = Medico(nome, crm, especialidade)
+    medico.append(medico_cadastrado)
+    return True, "Médico cadastrado com sucesso"
