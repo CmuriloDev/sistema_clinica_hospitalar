@@ -1,6 +1,6 @@
 #Classe da consulta 
 class Consulta:
-    def __init__(self, paciente, medico, data, hora, status = "Agendada"):
+    def __init__(self, paciente, medico, data, hora, status):
         self.paciente = paciente
         self.medico = medico
         self.data = data

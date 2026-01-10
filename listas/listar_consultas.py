@@ -1,4 +1,6 @@
 from agendamento.agendar_consulta import consultas
+#from cadastro.cadastro_medico import medicos -------> analisar a veracidade
+#from cadastro.cadastro_paciente import pacientes -------> analisar a veracidade
 
  
 def listar_consultas():
@@ -8,15 +10,16 @@ def listar_consultas():
     consultas_listadas = []
     
     for consulta in consultas:
-        consulta_dicionario = {
-        "Paciente": consulta.paciente.nome,
-        "Cpf Do Paciente": consulta.paciente.cpf,
-        "Médico": consulta.medico.nome,
-        "CRM": consulta.medico.crm,
-        "Especialidade": consulta.medico.especialidade,
-        "Data": consulta.data_hora,
-        "Status": consulta.status
+        consulta_dict = {
+        "paciente": consulta.paciente.nome,
+        "cpf do paciente": consulta.paciente.cpf,
+        "telefone do paciente": consulta.paciente.telefone,
+        "medico": consulta.medico.nome,
+        "crm": consulta.medico.crm,
+        "especialidade": consulta.medico.especialidade,
+        "data": consulta.data_hora,
+        "status": consulta.status
          }
         
-    consultas_listadas.append(consulta_dicionario)
-    return 
+        consultas_listadas.append(consulta_dict)
+    return True, consultas_listadas
