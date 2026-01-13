@@ -1,28 +1,16 @@
-from firebase_admin import firestore
+from agendamento.cancelar_consulta import consultas
 
-db = firestore.client()
- 
-def cancelar_consulta():
-    id_consulta = input('Digite o ID da consulta que quer cancelar: ')
-    
-    try:
-        #Busca a consulta no firebase
-        consulta_ref = db.collection("consultas").document(id_consulta)
-        consulta_doc = consulta_ref.get()
+def cancelar_consulta(cpf_paciente, data_hora):
+    if not consultas:
+        return False, "Não há consultas agendadas para cancelar."
 
-        if consulta_doc.exists:
-            consulta_data = consulta_doc.to_dict()
-
-        #verifica se o status permite cancelamento
-            if consulta_data.get("status") == "Agendada":
-                consulta_ref.update({"status": "Cancelada"})
-                print(f"Consulta {id_consulta} cancelada com sucesso.✅")
-
-            else:
-                print(f"Não é possível cancelar, o status atual é '{consulta_data.get('status')}'.")
-        
-        else:
-            print(f"Consulta não encontrada.❌")
-
-    except Exception as e:
-        print(f"Erro ao cancelar consulta: {e}❌")
+    for consulta in consultas:
+        if consulta.cpf_paciente == cpf_paciente and consulta.data_hora == data_hora:
+            if consulta.status == "REALIZADA":
+                return False, "Consulta já realizada."
+            
+            if consulta.status == "CANCELADA":
+                return False, "Consulta já cancelada."
+            
+            consulta.status = "CANCELADA"
+            return True, "Consulta cancelada com sucesso."

@@ -36,6 +36,6 @@ def agendar_consulta(cpf_paciente, crm_medico, data_hora):
         if consulta.medico.crm and consulta.data_hora == data_hora:
             return False, "Médico já possui consulta agendada nesse horário."
         
-    nova_consulta = Consulta(paciente_encontrado, medico_encontrado, data_hora, status="Agendada")
+    nova_consulta = Consulta(paciente_encontrado, medico_encontrado, data_hora, status="AGENDADA")
     consultas.append(nova_consulta)
     return True, "Consulta agendada com sucesso."
