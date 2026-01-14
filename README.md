@@ -1,4 +1,4 @@
-# 🏥 Sistema de Agendamento de Consultas Médicas
+# 🏥 SwiftMed
 
 Sistema desenvolvido em Python e Flask com foco em boas práticas de arquitetura, separação de responsabilidades e evolução incremental.  
 O objetivo do projeto é ser um sistema de agendamento médico.
