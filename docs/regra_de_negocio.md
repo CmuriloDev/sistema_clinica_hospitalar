@@ -9,7 +9,7 @@ Este documento descreve as **regras de negócio** do sistema de agendamento de c
 
 ---
 
-## **2\. Perfis de Usuário (Papéis)**
+## **2\. Perfis de Usuário **
 
 O sistema possui os seguintes perfis:
 
@@ -59,7 +59,9 @@ O sistema possui os seguintes perfis:
 
   * Não existir outra consulta para o mesmo médico no mesmo horário
 
-  * A data e hora forem futuras
+  * A data e hora forem futura
+ 
+  * Ter um tempo mínimo de 20 minutos após uma consulta já agendada de um mesmo médico
 
 * Pacientes **não podem agendar consultas diretamente**, para evitar uso indevido do sistema
 
@@ -72,8 +74,6 @@ O sistema possui os seguintes perfis:
 * Secretário
 
 * Admin
-
-* Médico
 
 **Restrições:**
 
@@ -174,6 +174,8 @@ O sistema possui os seguintes perfis:
   * Nome
 
   * CPF
+ 
+  * Telefone
 
   * E-mail
 
@@ -192,6 +194,7 @@ O sistema possui os seguintes perfis:
 * O sistema impede:
 
   * Dois agendamentos para o **mesmo médico no mesmo horário**
+  * Agendamentos com horários muito próximos de um mesmo médico
 
 ---
 
@@ -211,13 +214,13 @@ Uma consulta pode possuir apenas um dos seguintes status, mas futuramente serão
 
 * Consultas **Finalizadas** são imutáveis
 
-* Status não deve ser tratado como string livre no futuro (planejado uso de Enum)
+* Status não deve ser tratado como string livre no futuro (uso de Enum futuramente)
 
 ---
 
 ## **6\. Integridade e Evolução do Sistema**
 
-* As regras de negócio são independentes da interface (CLI, Tkinter ou Web)
+* As regras de negócio são independentes da interface (CLI, Web)
 
 * A persistência em banco de dados (Firebase) deve respeitar todas as validações aqui descritas
 
