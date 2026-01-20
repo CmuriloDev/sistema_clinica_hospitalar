@@ -6,22 +6,18 @@ from datetime import datetime
 consultas = []  
 
 def agendar_consulta(cpf_paciente, crm_medico, data_hora):      
-    paciente_encontrado = None
     for paciente in pacientes:
         if paciente.cpf == cpf_paciente:
-            paciente_encontrado = paciente
-            break
+            return paciente
     
-    if not paciente_encontrado:
         return False, "Paciente não cadastrado."
-
+    
     medico_encontrado = None
     for medico in medicos:
         if medico.crm == crm_medico:
-            medico_encontrado = medico
-            break
+            medico_encontrado == medico
+            return medico
            
-    if not medico_encontrado:
         return False, "Médico não cadastrado."
 
     try:
@@ -33,9 +29,9 @@ def agendar_consulta(cpf_paciente, crm_medico, data_hora):
         return False, "Data/hora inválidos, tente novamente."
 
     for consulta in consultas:
-        if consulta.medico.crm and consulta.data_hora == data_hora:
+        if consulta.medico.crm == medico_encontrado and consulta.data_hora == data_hora:
             return False, "Médico já possui consulta agendada nesse horário."
         
-    nova_consulta = Consulta(paciente_encontrado, medico_encontrado, data_hora, status="AGENDADA")
+    nova_consulta = Consulta(paciente, medico, data_hora, status="AGENDADA")
     consultas.append(nova_consulta)
     return True, "Consulta agendada com sucesso."

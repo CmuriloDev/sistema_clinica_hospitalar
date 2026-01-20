@@ -1,4 +1,4 @@
-from agendamento.cancelar_consulta import consultas
+from agendamento.agendar_consulta import consultas
 
 def cancelar_consulta(cpf_paciente, data_hora):
     if not consultas:
